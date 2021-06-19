@@ -3,6 +3,7 @@ import * as cors from "cors";
 import Config from "./config/dev";
 import SurveyService from './components/survey/service';
 import SurveyController from './components/survey/controller';
+import SurveyRouter from './components/survey/router';
 
 const application: express.Application= express();
 
@@ -26,11 +27,7 @@ application.use("/static", express.static("static/", {
 }));
 */
 
-const surveyService:SurveyService = new SurveyService();
-const surveyController:SurveyController= new SurveyController(surveyService);
-
-application.get("/surveys", surveyController.getAll.bind(surveyController));
-application.get("/surveys/:id", surveyController.getById.bind(surveyController));
+SurveyRouter.setUpRoutes(application);
 
 
 
