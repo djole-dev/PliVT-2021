@@ -9,10 +9,30 @@ class SurveyController{
     }
 
     async getAll(req: Request, res: Response, next: NextFunction){
-      const survey =  await this.surveyService.getAll();
+      const surveys =  await this.surveyService.getAll();
 
-      res.send(survey);
+      res.send(surveys);
     }
+
+
+    async getById(req: Request, res: Response, next: NextFunction){
+        const id: string = req.params.id;
+
+        const surveyId: number = +id;
+
+        if(surveyId <= 0){
+            res.sendStatus(400);
+            return;
+        }
+        const survey:SurveyModel|null =  await this.surveyService.getById(+id);
+
+        if(survey === null){
+            res.sendStatus(404);
+            return;
+        }
+  
+        res.send(survey);
+      }
 
 }
 

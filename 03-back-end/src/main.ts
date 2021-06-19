@@ -19,10 +19,7 @@ application.get("/about", (req,res) => {
 
     });
 });
-/*
-application.use((req, res) => {
-    res.sendStatus(404);
-});*/
+
 /*
 application.use("/static", express.static("static/", {
     index: "logo.png",
@@ -32,7 +29,15 @@ application.use("/static", express.static("static/", {
 const surveyService:SurveyService = new SurveyService();
 const surveyController:SurveyController= new SurveyController(surveyService);
 
-application.get("/survey", surveyController.getAll.bind(surveyController));
+application.get("/surveys", surveyController.getAll.bind(surveyController));
+application.get("/surveys/:id", surveyController.getById.bind(surveyController));
+
+
+
+
+application.use((req, res) => {
+    res.sendStatus(404);
+});
 
 
 application.listen(Config.server.port);
