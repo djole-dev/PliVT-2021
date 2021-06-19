@@ -3,7 +3,7 @@ class SurveyModel {
    identificationNumber: string;
    name: string;
    userId: number;
-   //created at
+   createdAt: string;
 };
 
 
