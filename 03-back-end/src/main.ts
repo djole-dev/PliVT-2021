@@ -6,6 +6,7 @@ import SurveyController from "./components/survey/controller";
 import SurveyRouter from "./components/survey/router";
 import * as mysql2 from "mysql2/promise";
 import { IApplicationResources } from "./common/IApplicationResources";
+import Router from "./router";
 
 async function main() {
   const application: express.Application = express();
@@ -41,7 +42,10 @@ application.use("/static", express.static("static/", {
 }));
 */
 
-  SurveyRouter.setUpRoutes(application, resources);
+  Router.setUpRoutes(application, resources , [
+    new SurveyRouter(),
+  ])
+
 
   application.use((req, res) => {
     res.sendStatus(404);

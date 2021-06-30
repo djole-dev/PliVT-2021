@@ -2,9 +2,10 @@ import * as express from "express";
 import SurveyController from "./controller";
 import SurveyService from "./service";
 import { IApplicationResources } from "../../common/IApplicationResources";
+import IRouter from '../../common/IRouter.interface';
 
-export default class SurveyRouter {
-  public static setUpRoutes(
+export default class SurveyRouter implements IRouter {
+  public setUpRoutes(
     application: express.Application,
     resources: IApplicationResources
   ) {
