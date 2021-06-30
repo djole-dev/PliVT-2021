@@ -1,6 +1,7 @@
 import SurveyService from './service';
 import {Request, Response, NextFunction} from "express";
 import SurveyModel from './model';
+import IErrorResponse from '../../common/IErrorResponse.interface';
 class SurveyController{
     private surveyService:SurveyService;
 
@@ -24,14 +25,19 @@ class SurveyController{
             res.sendStatus(400);
             return;
         }
-        const survey:SurveyModel|null =  await this.surveyService.getById(+id);
+        const data:SurveyModel|null| IErrorResponse =  await this.surveyService.getById(+id);
 
-        if(survey === null){
+        if(data === null){
             res.sendStatus(404);
             return;
         }
+
+        if(data instanceof SurveyModel){
+           res.send(data);
+            return;
+        }
   
-        res.send(survey);
+        res.status(500).send(data);
       }
 
 }
