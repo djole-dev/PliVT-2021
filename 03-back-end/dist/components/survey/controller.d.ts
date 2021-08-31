@@ -5,5 +5,6 @@ declare class SurveyController {
     constructor(surveyService: SurveyService);
     getAll(req: Request, res: Response, next: NextFunction): Promise<void>;
     getById(req: Request, res: Response, next: NextFunction): Promise<void>;
+    add(req: Request, res: Response, next: NextFunction): Promise<void>;
 }
 export default SurveyController;

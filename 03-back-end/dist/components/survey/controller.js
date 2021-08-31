@@ -9,6 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const model_1 = require("./model");
+const AddSurvey_1 = require("./dto/AddSurvey");
 class SurveyController {
     constructor(surveyService) {
         this.surveyService = surveyService;
@@ -27,12 +29,27 @@ class SurveyController {
                 res.sendStatus(400);
                 return;
             }
-            const survey = yield this.surveyService.getById(+id);
-            if (survey === null) {
+            const data = yield this.surveyService.getById(+id);
+            if (data === null) {
                 res.sendStatus(404);
                 return;
             }
-            res.send(survey);
+            if (data instanceof model_1.default) {
+                res.send(data);
+                return;
+            }
+            res.status(500).send(data);
+        });
+    }
+    add(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const data = req.body;
+            if (!AddSurvey_1.IAddSurveyValidator(data)) {
+                res.status(400).send(AddSurvey_1.IAddSurveyValidator.errors);
+                return;
+            }
+            const result = yield this.surveyService.add(data);
+            res.send(result);
         });
     }
 }

@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `survey` (
   `identification_number` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `user_id` int unsigned NOT NULL,
-  `createda_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`survey_id`),
   UNIQUE KEY `uq_survey_identification_number` (`identification_number`) USING BTREE,
   KEY `fk_survey_user_id` (`user_id`),

@@ -19,5 +19,6 @@ export default class SurveyRouter implements IRouter {
       "/surveys/:id",
       surveyController.getById.bind(surveyController)
     );
+    application.post("/surveys", surveyController.add.bind(surveyController));;
   }
 }

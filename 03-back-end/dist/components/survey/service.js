@@ -21,35 +21,79 @@ class SurveyService {
             item.name = row === null || row === void 0 ? void 0 : row.name;
             item.identificationNumber = row === null || row === void 0 ? void 0 : row.identification_number;
             item.userId = Number(row === null || row === void 0 ? void 0 : row.user_id);
-            item.createdAt = row === null || row === void 0 ? void 0 : row.created_at;
             return item;
         });
     }
     getAll() {
         return __awaiter(this, void 0, void 0, function* () {
-            const lista = [];
-            const sql = "SELECT * FROM survey;";
-            const [rows, columns] = yield this.db.execute(sql);
-            if (Array.isArray(rows)) {
-                for (const row of rows) {
-                    lista.push(yield this.adaptModel(row));
-                }
-            }
-            return lista;
+            return new Promise((resolve) => __awaiter(this, void 0, void 0, function* () {
+                const lista = [];
+                const sql = "SELECT * FROM survey;";
+                this.db
+                    .execute(sql)
+                    .then((result) => __awaiter(this, void 0, void 0, function* () {
+                    const rows = result[0];
+                    const lista = [];
+                    if (Array.isArray(rows)) {
+                        for (const row of rows) {
+                            lista.push(yield this.adaptModel(row));
+                        }
+                    }
+                    resolve(lista);
+                }))
+                    .catch((error) => {
+                    resolve({
+                        errorCode: error === null || error === void 0 ? void 0 : error.errorno,
+                        errorMessage: error === null || error === void 0 ? void 0 : error.sqlMessage,
+                    });
+                });
+            }));
         });
     }
     getById(surveyId) {
         return __awaiter(this, void 0, void 0, function* () {
-            const lista = [];
-            const sql = "SELECT * FROM survey WHERE survey_id = ?;";
-            const [rows, columns] = yield this.db.execute(sql, [surveyId]);
-            if (!Array.isArray(rows)) {
-                return null;
-            }
-            if (rows.length === 0) {
-                return null;
-            }
-            return yield this.adaptModel(rows[0]);
+            return new Promise((resolve) => __awaiter(this, void 0, void 0, function* () {
+                const lista = [];
+                const sql = "SELECT * FROM survey WHERE survey_id = ?;";
+                this.db
+                    .execute(sql, [surveyId])
+                    .then((result) => __awaiter(this, void 0, void 0, function* () {
+                    const [rows, columns] = result;
+                    if (!Array.isArray(rows)) {
+                        resolve(null);
+                        return;
+                    }
+                    if (rows.length === 0) {
+                        resolve(null);
+                        return;
+                    }
+                    resolve(yield this.adaptModel(rows[0]));
+                }))
+                    .catch((error) => {
+                    resolve({
+                        errorCode: error === null || error === void 0 ? void 0 : error.errno,
+                        errorMessage: error === null || error === void 0 ? void 0 : error.sqlMessage,
+                    });
+                });
+            }));
+        });
+    }
+    add(data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return new Promise((resolve) => __awaiter(this, void 0, void 0, function* () {
+                const sql = `INSERT survey SET identification_number = ?, name = ? , user_id = ?`;
+                this.db.execute(sql, [data.identificationNumber, data.name, data.userId])
+                    .then((result) => __awaiter(this, void 0, void 0, function* () {
+                    const insertInfo = result[0];
+                    const newSurveyId = +(insertInfo === null || insertInfo === void 0 ? void 0 : insertInfo.insertId);
+                    resolve(yield this.getById(newSurveyId));
+                })).catch(error => {
+                    resolve({
+                        errorCode: error === null || error === void 0 ? void 0 : error.errno,
+                        errorMessage: error === null || error === void 0 ? void 0 : error.sqlMessage
+                    });
+                });
+            }));
         });
     }
 }

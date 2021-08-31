@@ -1,8 +1,10 @@
 import SurveyModel from "./model";
 import * as mysql2 from "mysql2/promise";
-import IErrorResponse from "../../common/IErrorResponse.interface";
+import IErrorResponse from '../../common/IErrorResponse.interface';
 import { resolve } from "path/posix";
 import { resourceUsage } from "process";
+import { IAddSurvey } from "./dto/AddSurvey";
+import { error } from "ajv/dist/vocabularies/applicator/dependencies";
 
 class SurveyService {
   private db: mysql2.Connection;
@@ -18,7 +20,7 @@ class SurveyService {
     item.name = row?.name;
     item.identificationNumber = row?.identification_number;
     item.userId = Number(row?.user_id);
-    item.createdAt = row?.created_at;
+    //item.createdAt = row?.created_at;
 
     return item;
   }
@@ -84,6 +86,25 @@ class SurveyService {
         });
     });
   }
+
+public async add (data :IAddSurvey): Promise<SurveyModel | IErrorResponse> {
+  return new Promise<SurveyModel | IErrorResponse>(async resolve =>{
+    const sql = `INSERT survey SET identification_number = ?, name = ? , user_id = ?;`;
+
+    this.db.execute(sql, [ data.identificationNumber, data.name, data.userId])
+    .then(async result => {
+      const insertInfo : any = result[0];
+      const newSurveyId : number = +(insertInfo?.insertId);
+      resolve(await this.getById(newSurveyId));
+    }).catch(error => {
+      resolve({
+        errorCode: error?.errno,
+        errorMessage: error?. sqlMessage
+      })
+    })
+  })
+}
+
 }
 
 export default SurveyService;

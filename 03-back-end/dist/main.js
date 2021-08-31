@@ -14,6 +14,7 @@ const cors = require("cors");
 const dev_1 = require("./config/dev");
 const router_1 = require("./components/survey/router");
 const mysql2 = require("mysql2/promise");
+const router_2 = require("./router");
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         const application = express();
@@ -38,9 +39,14 @@ function main() {
                 content: "About us",
             });
         });
-        router_1.default.setUpRoutes(application, resources);
+        router_2.default.setUpRoutes(application, resources, [
+            new router_1.default(),
+        ]);
         application.use((req, res) => {
             res.sendStatus(404);
+        });
+        application.use((err, req, res, next) => {
+            res.status(err.status).send(err.type);
         });
         application.listen(dev_1.default.server.port);
     });

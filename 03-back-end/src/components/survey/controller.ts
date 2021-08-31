@@ -2,6 +2,7 @@ import SurveyService from './service';
 import {Request, Response, NextFunction} from "express";
 import SurveyModel from './model';
 import IErrorResponse from '../../common/IErrorResponse.interface';
+import { IAddSurvey, IAddSurveyValidator } from './dto/AddSurvey';
 class SurveyController{
     private surveyService:SurveyService;
 
@@ -38,6 +39,19 @@ class SurveyController{
         }
   
         res.status(500).send(data);
+      }
+
+      async add(req: Request, res:Response, next: NextFunction){
+          const data = req.body;
+
+          if(!IAddSurveyValidator(data)){
+              res.status(400).send(IAddSurveyValidator.errors);
+              return;
+          }
+
+          const result: SurveyModel | IErrorResponse = await this.surveyService.add(data as IAddSurvey); 
+
+          res.send(result);
       }
 
 }
