@@ -1,6 +1,7 @@
 import IModel from '../common/IModel.interface';
 import * as mysql2 from 'mysql2/promise';
 import IErrorResponse from '../common/IErrorResponse.interface';
+import IModelAdapterOptions from '../common/IModelAdapterOptions';
 export default abstract class BaseService<ReturnModel extends IModel>{
     private dbConnection:mysql2.Connection;
 
@@ -13,10 +14,11 @@ export default abstract class BaseService<ReturnModel extends IModel>{
     }
 
    protected abstract adaptModel(
-        data: any
+        data: any,
+        options: Partial<IModelAdapterOptions>
     ): Promise<ReturnModel>;
 
-    protected async getAllFromTable(tableName: string): Promise<ReturnModel [] | IErrorResponse>{
+    protected async getAllFromTable<AdapterOptions extends IModelAdapterOptions>(tableName: string, options: Partial<AdapterOptions> ={}): Promise<ReturnModel [] | IErrorResponse>{
         return new Promise<ReturnModel[] | IErrorResponse>(async (resolve) => {
             const lista: ReturnModel[] = [];
            
@@ -30,7 +32,7 @@ export default abstract class BaseService<ReturnModel extends IModel>{
       
                 if (Array.isArray(rows)) {
                   for (const row of rows) {
-                    lista.push(await this.adaptModel(row));
+                    lista.push(await this.adaptModel(row, options));
                   }
                 }
       
@@ -46,7 +48,7 @@ export default abstract class BaseService<ReturnModel extends IModel>{
     }
 
 
-    protected async  getByIdFromTable (tableName: string, id: number): Promise <ReturnModel|null| IErrorResponse>{
+    protected async  getByIdFromTable <AdapterOptions extends IModelAdapterOptions> (tableName: string, id: number,options: Partial<AdapterOptions> ={}): Promise <ReturnModel|null| IErrorResponse>{
 
         return new Promise<ReturnModel | null | IErrorResponse>(async (resolve) => {
             const lista: ReturnModel[] = [];
@@ -67,7 +69,7 @@ export default abstract class BaseService<ReturnModel extends IModel>{
                   return;
                 }
       
-                resolve(await this.adaptModel(rows[0]));
+                resolve(await this.adaptModel(rows[0], options));
               })
               .catch((error) => {
                 resolve({
@@ -80,7 +82,7 @@ export default abstract class BaseService<ReturnModel extends IModel>{
     }
 
 
-    protected async getAllByFieldNameFromTable (tableName: string, fieldName: string, fieldValue: any){
+    protected async getAllByFieldNameFromTable<AdapterOptions extends IModelAdapterOptions> (tableName: string, fieldName: string, fieldValue: any,options: Partial<AdapterOptions> ={}){
         return new Promise<ReturnModel[] | IErrorResponse>(async (resolve) => {
             const lista: ReturnModel[] = [];
             
@@ -96,7 +98,7 @@ export default abstract class BaseService<ReturnModel extends IModel>{
       
                 if (Array.isArray(rows)) {
                   for (const row of rows) {
-                    lista.push(await this.adaptModel(row));
+                    lista.push(await this.adaptModel(row,options));
                   }
                 }
       

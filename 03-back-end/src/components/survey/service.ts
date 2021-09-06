@@ -7,10 +7,16 @@ import { IAddSurvey } from "./dto/AddSurvey";
 import { error } from "ajv/dist/vocabularies/applicator/dependencies";
 import BaseService from '../../services/BaseService';
 import { IEditSurvey } from "./dto/EditSurvey";
+import IModelAdapterOptions from "../../common/IModelAdapterOptions";
+
+
+class SurveyModelAdapterOptions implements IModelAdapterOptions{
+     loadQuestions: boolean = false;
+}
 
 class SurveyService extends BaseService<SurveyModel> {
  
-  protected async adaptModel(row: any): Promise<SurveyModel> {
+  protected async adaptModel(row: any, options: Partial<SurveyModelAdapterOptions>): Promise<SurveyModel> {
     const item: SurveyModel = new SurveyModel();
 
     item.surveyId = Number(row?.survey_id);
@@ -23,7 +29,7 @@ class SurveyService extends BaseService<SurveyModel> {
   }
 
   public async getAll(): Promise<SurveyModel[] | IErrorResponse> {
-    return await this.getAllFromTable("survey");
+    return await this.getAllFromTable<SurveyModelAdapterOptions>("survey");
     /*return new Promise<SurveyModel[] | IErrorResponse>(async (resolve) => {
       const lista: SurveyModel[] = [];
 
@@ -55,7 +61,7 @@ class SurveyService extends BaseService<SurveyModel> {
   public async getById(
     surveyId: number
   ): Promise<SurveyModel | null | IErrorResponse> {
-    return await this.getByIdFromTable("survey", surveyId);
+    return await this.getByIdFromTable<SurveyModelAdapterOptions>("survey", surveyId);
   }
 
 public async add (data :IAddSurvey): Promise<SurveyModel | IErrorResponse> {
