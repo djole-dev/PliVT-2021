@@ -5,14 +5,10 @@ import { resolve } from "path/posix";
 import { resourceUsage } from "process";
 import { IAddSurvey } from "./dto/AddSurvey";
 import { error } from "ajv/dist/vocabularies/applicator/dependencies";
+import BaseService from '../../services/BaseService';
 
-class SurveyService {
-  private db: mysql2.Connection;
-
-  constructor(db: mysql2.Connection) {
-    this.db = db;
-  }
-
+class SurveyService extends BaseService<SurveyModel> {
+ 
   protected async adaptModel(row: any): Promise<SurveyModel> {
     const item: SurveyModel = new SurveyModel();
 
@@ -26,7 +22,8 @@ class SurveyService {
   }
 
   public async getAll(): Promise<SurveyModel[] | IErrorResponse> {
-    return new Promise<SurveyModel[] | IErrorResponse>(async (resolve) => {
+    return await this.getAllFromTable("survey");
+    /*return new Promise<SurveyModel[] | IErrorResponse>(async (resolve) => {
       const lista: SurveyModel[] = [];
 
       const sql: string = "SELECT * FROM survey;";
@@ -51,40 +48,13 @@ class SurveyService {
             errorMessage: error?.sqlMessage,
           });
         });
-    });
+    });*/
   }
 
   public async getById(
     surveyId: number
   ): Promise<SurveyModel | null | IErrorResponse> {
-    return new Promise<SurveyModel | null | IErrorResponse>(async (resolve) => {
-      const lista: SurveyModel[] = [];
-
-      const sql: string = "SELECT * FROM survey WHERE survey_id = ?;";
-
-      this.db
-        .execute(sql, [surveyId])
-        .then(async (result) => {
-          const [rows, columns] = result;
-          if (!Array.isArray(rows)) {
-            resolve(null);
-            return;
-          }
-
-          if (rows.length === 0) {
-            resolve(null);
-            return;
-          }
-
-          resolve(await this.adaptModel(rows[0]));
-        })
-        .catch((error) => {
-          resolve({
-            errorCode: error?.errno,
-            errorMessage: error?.sqlMessage,
-          });
-        });
-    });
+    return await this.getByIdFromTable("survey", surveyId);
   }
 
 public async add (data :IAddSurvey): Promise<SurveyModel | IErrorResponse> {
