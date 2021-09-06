@@ -3,6 +3,7 @@ import {Request, Response, NextFunction} from "express";
 import SurveyModel from './model';
 import IErrorResponse from '../../common/IErrorResponse.interface';
 import { IAddSurvey, IAddSurveyValidator } from './dto/AddSurvey';
+import { IEditSurvey, IEditSurveyValidator } from './dto/EditSurvey';
 class SurveyController{
     private surveyService:SurveyService;
 
@@ -52,6 +53,33 @@ class SurveyController{
           const result: SurveyModel | IErrorResponse = await this.surveyService.add(data as IAddSurvey); 
 
           res.send(result);
+      }
+
+      async edit(req: Request, res:Response, next: NextFunction){
+        const id: string = req.params.id;
+
+        const surveyId: number = +id;
+
+        if(surveyId <= 0){
+            res.status(400).send("Invalid ID number.");
+            return;
+        }
+
+          const data= req.body
+
+          if(!IEditSurveyValidator(data)){
+            res.status(400).send(IEditSurveyValidator.errors);
+            return;
+        }
+
+        const result: SurveyModel | IErrorResponse = await this.surveyService.edit(surveyId,data as IEditSurvey); 
+
+        if(result === null){
+            res.sendStatus(404);
+            return;
+        }
+
+        res.send(result);
       }
 
 }

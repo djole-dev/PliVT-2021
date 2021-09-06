@@ -6,6 +6,7 @@ import { resourceUsage } from "process";
 import { IAddSurvey } from "./dto/AddSurvey";
 import { error } from "ajv/dist/vocabularies/applicator/dependencies";
 import BaseService from '../../services/BaseService';
+import { IEditSurvey } from "./dto/EditSurvey";
 
 class SurveyService extends BaseService<SurveyModel> {
  
@@ -66,6 +67,32 @@ public async add (data :IAddSurvey): Promise<SurveyModel | IErrorResponse> {
       const insertInfo : any = result[0];
       const newSurveyId : number = +(insertInfo?.insertId);
       resolve(await this.getById(newSurveyId));
+    }).catch(error => {
+      resolve({
+        errorCode: error?.errno,
+        errorMessage: error?. sqlMessage
+      })
+    })
+  })
+}
+
+public async edit(surveyId:number, data:IEditSurvey): Promise<SurveyModel | IErrorResponse | null>{
+  const result =await this.getById(surveyId);
+   
+   if(result === null){
+     return null;
+   }
+
+   if(!(result instanceof SurveyModel)){
+        return result;
+   }
+
+   return new Promise<SurveyModel | IErrorResponse>(async resolve =>{
+    const sql = `UPDATE survey SET name = ? WHERE survey_id=?;`;
+
+    this.db.execute(sql, [data.name, surveyId])
+    .then(async result => {
+      resolve(await this.getById(surveyId));
     }).catch(error => {
       resolve({
         errorCode: error?.errno,
