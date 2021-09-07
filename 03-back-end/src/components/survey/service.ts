@@ -28,7 +28,8 @@ class SurveyService extends BaseService<SurveyModel> {
     return item;
   }
 
-  public async getAll(): Promise<SurveyModel[] | IErrorResponse> {
+  public async getAll(
+  ): Promise<SurveyModel[] | IErrorResponse> {
     return await this.getAllFromTable<SurveyModelAdapterOptions>("survey");
     /*return new Promise<SurveyModel[] | IErrorResponse>(async (resolve) => {
       const lista: SurveyModel[] = [];
@@ -106,6 +107,38 @@ public async edit(surveyId:number, data:IEditSurvey): Promise<SurveyModel | IErr
       })
     })
   })
+}
+
+
+public async delete(surveyId: number):Promise<IErrorResponse>{
+  return new Promise<IErrorResponse>(resolve=>{
+    const sql = "DELETE FROM survey WHERE survey_id = ?;";
+    this.db.execute(sql, [surveyId])
+    .then(async result => {
+      const deleteInfo: any= result [0];
+      const deleteRowCount: number = +(deleteInfo?.affectedRows);
+
+      if(deleteRowCount === 1){
+        resolve({
+          errorCode:0,
+          errorMessage: "One record deleted."
+        });
+      }else{
+        resolve({
+          errorCode: -1,
+          errorMessage: "This record could not be deleted."
+        });
+      }
+    }).catch(
+      error => {
+        resolve({
+          errorCode: error?.eerno,
+          errorMessage: error?.sqlMessage
+        });
+      }
+    )
+  })
+
 }
 
 }
