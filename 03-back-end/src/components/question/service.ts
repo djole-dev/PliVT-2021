@@ -1,26 +1,20 @@
 import QuestionModel from "./model";
 import IModelAdapterOptions from "../../common/IModelAdapterOptions";
-import BaseService from "../../services/BaseService";
+import BaseService from "../../common/BaseService";
 import * as mysql2 from "mysql2/promise";
 import { eachItem } from "ajv/dist/compile/util";
 import SurveyService from "../survey/service";
-import SurveyModel from "../../../dist/components/survey/model";
-import IErrorResponse from '../../../dist/common/IErrorResponse.interface';
 import { IAddQuestion } from "./dto/AddQuestion";
 import { IEditQuestion } from "./dto/EditQuestion";
+import SurveyModel from "../survey/model";
+import IErrorResponse from "../../common/IErrorResponse.interface";
 
 class QuestionModelAdapterOptions implements IModelAdapterOptions {
   loadSurvey: boolean = false;
 }
 
 class QuestionService extends BaseService<QuestionModel> {
-  private surveyService: SurveyService;
-
-  constructor(db: mysql2.Connection) {
-    super(db);
-
-    this.surveyService = new SurveyService(this.db);
-  }
+ 
 
   protected async adaptModel(
     data: any,
@@ -36,8 +30,7 @@ class QuestionService extends BaseService<QuestionModel> {
     item.orderOfQuestion = +data?.orderOfQuestion;
 
     if (options.loadSurvey && item.surveyId) {
-      const result = await this.surveyService.getById(item.surveyId);
-
+      const result = await this.services.surveyService.getById(item.surveyId);
       if (result instanceof SurveyModel) {
         item.survey = result;
       }

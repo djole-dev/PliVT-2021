@@ -5,9 +5,10 @@ import { resolve } from "path/posix";
 import { resourceUsage } from "process";
 import { IAddSurvey } from "./dto/AddSurvey";
 import { error } from "ajv/dist/vocabularies/applicator/dependencies";
-import BaseService from '../../services/BaseService';
+import BaseService from '../../common/BaseService';
 import { IEditSurvey } from "./dto/EditSurvey";
 import IModelAdapterOptions from "../../common/IModelAdapterOptions";
+import QuestionService from '../question/service';
 
 
 class SurveyModelAdapterOptions implements IModelAdapterOptions{
@@ -15,6 +16,8 @@ class SurveyModelAdapterOptions implements IModelAdapterOptions{
 }
 
 class SurveyService extends BaseService<SurveyModel> {
+ 
+ 
  
   protected async adaptModel(row: any, options: Partial<SurveyModelAdapterOptions>): Promise<SurveyModel> {
     const item: SurveyModel = new SurveyModel();
@@ -25,6 +28,9 @@ class SurveyService extends BaseService<SurveyModel> {
     item.userId = Number(row?.user_id);
     //item.createdAt = row?.created_at;
 
+    if(options.loadQuestions){
+      item.questions = await this.services.questionService.getAllBySurveyId(item.surveyId)
+    }
     return item;
   }
 
