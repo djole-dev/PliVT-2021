@@ -5,9 +5,10 @@ import SurveyService from "./components/survey/service";
 import SurveyController from "./components/survey/controller";
 import SurveyRouter from "./components/survey/router";
 import * as mysql2 from "mysql2/promise";
-import { IApplicationResources } from "./common/IApplicationResources";
+import IApplicationResources from "./common/IApplicationResources";
 import Router from "./router";
 import QuestionRouter from './components/question/router';
+import QuestionService from "./components/question/service";
 
 async function main() {
   const application: express.Application = express();
@@ -15,8 +16,10 @@ async function main() {
   application.use(cors());
   application.use(express.json());
 
+    
+
   const resources: IApplicationResources = {
-    databaseConnection: await mysql2.createConnection({
+    databaseConnection:  await mysql2.createConnection({
       host: Config.database.host,
       port: Config.database.port,
       user: Config.database.user,
@@ -29,6 +32,11 @@ async function main() {
   };
 
   resources.databaseConnection.connect();
+
+  resources.services = {
+    surveyService: new SurveyService(resources),
+   questionService: new QuestionService(resources)
+  }
 
   application.get("/about", (req, res) => {
     res.send({

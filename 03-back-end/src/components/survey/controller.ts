@@ -4,15 +4,15 @@ import SurveyModel from './model';
 import IErrorResponse from '../../common/IErrorResponse.interface';
 import { IAddSurvey, IAddSurveyValidator } from './dto/AddSurvey';
 import { IEditSurvey, IEditSurveyValidator } from './dto/EditSurvey';
-class SurveyController{
-    private surveyService:SurveyService;
+import QuestionService from '../question/service';
+import BaseController from '../../common/BaseController';
 
-    constructor(surveyService: SurveyService){
-        this.surveyService= surveyService;
-    }
+class SurveyController extends BaseController{
+
+   
 
     async getAll(req: Request, res: Response, next: NextFunction){
-      const surveys =  await this.surveyService.getAll();
+      const surveys =  await this.services.surveyService.getAll();
 
       res.send(surveys);
     }
@@ -27,7 +27,7 @@ class SurveyController{
             res.sendStatus(400);
             return;
         }
-        const data:SurveyModel|null| IErrorResponse =  await this.surveyService.getById(+id);
+        const data:SurveyModel|null| IErrorResponse =  await this.services.surveyService.getById(+id);
 
         if(data === null){
             res.sendStatus(404);
@@ -50,7 +50,7 @@ class SurveyController{
               return;
           }
 
-          const result: SurveyModel | IErrorResponse = await this.surveyService.add(data as IAddSurvey); 
+          const result: SurveyModel | IErrorResponse = await this.services.surveyService.add(data as IAddSurvey); 
 
           res.send(result);
       }
@@ -72,7 +72,7 @@ class SurveyController{
             return;
         }
 
-        const result: SurveyModel | IErrorResponse = await this.surveyService.edit(surveyId,data as IEditSurvey); 
+        const result: SurveyModel | IErrorResponse = await this.services.surveyService.edit(surveyId,data as IEditSurvey); 
 
         if(result === null){
             res.sendStatus(404);
@@ -93,7 +93,7 @@ class SurveyController{
               return;
           }
 
-          res.send(await this.surveyService.delete(surveyId));
+          res.send(await this.services.surveyService.delete(surveyId));
       }
 
 }

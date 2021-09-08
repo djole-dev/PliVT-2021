@@ -4,13 +4,10 @@ import QuestionModel from './model';
 import { IAddQuestion, IAddQuestionValidator } from "./dto/AddQuestion";
 import { request } from "http";
 import { IEditQuestion, IEditQuestionValidator } from "./dto/EditQuestion";
+import BaseController from '../../common/BaseController';
 
-class QuestionController{
-    private questionService:QuestionService;
-
-    constructor(questionService: QuestionService){
-        this.questionService= questionService;
-    }
+class QuestionController extends BaseController{
+    
 
     public async getById(req: Request, res: Response, next: NextFunction){
         const id: string = req.params.id;
@@ -22,7 +19,7 @@ class QuestionController{
             return;
         }
 
-        const result =await this.questionService.getById(questionId, {
+        const result =await this.services.questionService.getById(questionId, {
             loadSurvey: true
         })
 
@@ -41,7 +38,7 @@ class QuestionController{
 
     public async getAllInSurvey(req: Request, res: Response, next: NextFunction){
         const surveyId: number=  +(req.params.sid);
-        res.send(await this.questionService.getAllBySurveyId(surveyId));
+        res.send(await this.services.questionService.getAllBySurveyId(surveyId));
     }
 
     public async add(req: Request, res:Response){
@@ -49,7 +46,7 @@ class QuestionController{
             res.status(400).send(IAddQuestionValidator.errors);
         }
 
-        res.send(await this.questionService.add(req.body as IAddQuestion));
+        res.send(await this.services.questionService.add(req.body as IAddQuestion));
     }
 
     public async edit(req:Request,res: Response ){
@@ -66,7 +63,7 @@ class QuestionController{
             return;
         }
 
-        const result =await this.questionService.getById(questionId);
+        const result =await this.services.questionService.getById(questionId);
 
         if(result === null){
             res.sendStatus(404);
@@ -80,7 +77,7 @@ class QuestionController{
 
 
 
-       res.send( this.questionService.edit(questionId,req.body as IEditQuestion, {loadSurvey:true}));
+       res.send( this.services.questionService.edit(questionId,req.body as IEditQuestion, {loadSurvey:true}));
     }
 }
 

@@ -1,17 +1,17 @@
 import * as express from "express";
 import SurveyController from "./controller";
 import SurveyService from "./service";
-import { IApplicationResources } from "../../common/IApplicationResources";
 import IRouter from '../../common/IRouter.interface';
+import IApplicationResources from "../../common/IApplicationResources";
 
 export default class SurveyRouter implements IRouter {
   public setUpRoutes(
     application: express.Application,
     resources: IApplicationResources
   ) {
-    const surveyService: SurveyService = new SurveyService(resources.databaseConnection);
+   
     const surveyController: SurveyController = new SurveyController(
-      surveyService
+      resources
     );
 
     application.get("/surveys", surveyController.getAll.bind(surveyController));
