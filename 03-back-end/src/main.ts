@@ -9,6 +9,8 @@ import IApplicationResources from "./common/IApplicationResources";
 import Router from "./router";
 import QuestionRouter from './components/question/router';
 import QuestionService from "./components/question/service";
+import AnswerService from './components/answer/service';
+import AnswerRouter from './components/answer/router';
 
 async function main() {
   const application: express.Application = express();
@@ -35,7 +37,8 @@ async function main() {
 
   resources.services = {
     surveyService: new SurveyService(resources),
-   questionService: new QuestionService(resources)
+   questionService: new QuestionService(resources),
+   answerService: new AnswerService(resources)
   }
 
   application.get("/about", (req, res) => {
@@ -53,7 +56,8 @@ application.use("/static", express.static("static/", {
 
   Router.setUpRoutes(application, resources , [
     new SurveyRouter(),
-    new QuestionRouter()
+    new QuestionRouter(),
+    new AnswerRouter()
   ])
 
 
