@@ -13,6 +13,7 @@ import AnswerService from './components/answer/service';
 import AnswerRouter from './components/answer/router';
 import UserService from './components/user/service';
 import UserRouter from './components/user/router';
+import AuthRouter from "./components/auth/router";
 
 async function main() {
   const application: express.Application = express();
@@ -61,7 +62,8 @@ application.use("/static", express.static("static/", {
     new SurveyRouter(),
     new QuestionRouter(),
     new AnswerRouter(),
-    new UserRouter()
+    new UserRouter(),
+    new AuthRouter()
   ])
 
 
