@@ -11,6 +11,8 @@ import QuestionRouter from './components/question/router';
 import QuestionService from "./components/question/service";
 import AnswerService from './components/answer/service';
 import AnswerRouter from './components/answer/router';
+import UserService from './components/user/service';
+import UserRouter from './components/user/router';
 
 async function main() {
   const application: express.Application = express();
@@ -38,7 +40,8 @@ async function main() {
   resources.services = {
     surveyService: new SurveyService(resources),
    questionService: new QuestionService(resources),
-   answerService: new AnswerService(resources)
+   answerService: new AnswerService(resources),
+   userService: new UserService(resources)
   }
 
   application.get("/about", (req, res) => {
@@ -57,7 +60,8 @@ application.use("/static", express.static("static/", {
   Router.setUpRoutes(application, resources , [
     new SurveyRouter(),
     new QuestionRouter(),
-    new AnswerRouter()
+    new AnswerRouter(),
+    new UserRouter()
   ])
 
 
