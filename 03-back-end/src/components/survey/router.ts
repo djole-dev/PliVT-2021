@@ -3,6 +3,7 @@ import SurveyController from "./controller";
 import SurveyService from "./service";
 import IRouter from '../../common/IRouter.interface';
 import IApplicationResources from "../../common/IApplicationResources";
+import AuthMiddleware from '../../middleware/auth.middleware';
 
 export default class SurveyRouter implements IRouter {
   public setUpRoutes(
@@ -14,7 +15,9 @@ export default class SurveyRouter implements IRouter {
       resources
     );
 
-    application.get("/surveys", surveyController.getAll.bind(surveyController));
+    application.get("/surveys",
+    AuthMiddleware.getVerifier("user"),
+     surveyController.getAll.bind(surveyController));
     application.get(
       "/surveys/:id",
       surveyController.getById.bind(surveyController)
