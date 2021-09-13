@@ -1,0 +1,53 @@
+.navigation{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color:#122936 ;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    justify-content: center;
+}
+
+/*#2196F3     blue*/
+/*#122936     black*/
+
+
+.navigation_logo{
+    width: 150px;
+    object-fit: contain;
+    margin: 0px;
+    /*margin-top: 18px;*/
+}
+
+
+.navigation_searchIcon {
+    border-radius: 0px 10px 10px 0px;
+    padding: 5px;
+    height: 22px !important;
+    background-color: #2196F3;
+    color: white;
+}
+
+.navigation_nav{
+    display: flex;
+    justify-content: space-evenly;
+    margin-right: 10px;
+}
+
+.navigation_option{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 20px;
+    color: #ffffff;
+}
+
+.navigation_optionLineOne{
+    font-size: 10px;
+}
+
+.navigation_optionLineTwo{
+    font-size: 13px;
+    font-weight: 700;
+}
