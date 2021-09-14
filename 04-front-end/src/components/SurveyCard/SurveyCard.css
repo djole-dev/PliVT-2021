@@ -1,0 +1,28 @@
+.survey{
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid gray;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 10px;
+    justify-content: center;
+}
+
+.survey_info{
+    padding-left: 20px;
+}
+
+.buttonBlue {
+    background: #2196F3;
+    border: 1px solid;
+    margin-top: 10px;
+    border: 1px solid black;
+    color: #ffffff;
+}
+
+
+.survey_title{
+    font-size: 17px;
+    font-weight: 800;
+}

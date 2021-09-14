@@ -5,12 +5,15 @@ import Navigation from "../Navigation/Navigation";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import "./Application.css";
+import SurveyPage from "../SurveyPage/SurveyPage";
+import QuestionPage from "../QuestionsPage/QuestionPage";
 
-
+export const DataContext = React.createContext([]);
 
 function App() {
 
   return (
+    <DataContext.Provider value={[]}>
     <Router>
       <div className='Application'>
         <Switch>
@@ -28,16 +31,20 @@ function App() {
           </Route>
           <Route path='/mySurveys'>
           <Navigation/>
-              <h1>mySurveys</h1>
+            <SurveyPage/>
           </Route>
-
           <Route path='/aboutUs'>
             <Navigation/>
           <h1>aboutUs</h1>
           </Route>
+          <Route path='/questions'>
+            <Navigation/>
+           <QuestionPage/>
+          </Route>
         </Switch>
       </div>
     </Router>
+    </DataContext.Provider>
   );
 }
 
