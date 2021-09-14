@@ -1,0 +1,2020 @@
+{
+	"info": {
+		"_postman_id": "74aba299-56d9-4e5c-8ca1-db9b86d7ce18",
+		"name": "AnketaApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Survey",
+			"item": [
+				{
+					"name": "PUT to edit an existing survey",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Ova je editovana\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/surveys/2",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"surveys",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT to edit an existing survey -valid response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Ova je editovana\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/surveys/2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"surveys",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "84"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"54-bcnJq2nd1YRBStEFseQPRBho1m0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Sep 2021 19:44:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"surveyId\": 2,\n    \"name\": \"Ova je editovana\",\n    \"identificationNumber\": \"12asda5\",\n    \"userId\": 1\n}"
+						},
+						{
+							"name": "PUT to edit an existing survey - with a non existing survey id",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Ova je editovana\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/surveys/22",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"surveys",
+										"22"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Sep 2021 19:45:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				},
+				{
+					"name": "GET allSurveys",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWRlbnRpdHkiOiJkanN1Ym90aWNkZXZAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2MzE0NzUxODIsImV4cCI6MTYzMTQ3NTMwMiwiaXNzIjoibG9jYWxob3N0In0.DGNDPWQqcFAhkqyUKTFncsvMcAuGz_9Z5EbtDnj5xc_Q325fvvc9OmgY_FEHMNmLUrnhkkEya7HOtOPNFcC__JEIKdW2pcPOf823vnFnXj9l91ooXKrzxiVPTtdAeBQG4PgnzX-INOwKGUmTueW9E3YXuGrOEPSxBEU17bRTpLIJfUGm1CJ0S45nZ6ePQnJkhmKHHjXnXlsqagnINMzNfmDvYsYbwRp-Zb3s221X-VBJgvWV9WWIwR_HPWMlKuzxxqjSya108VuDHpEGA9rZ8aO49hNJAvA41Dck0iQB4mqKhdUjLgl8BAEwE09J0Ds4F84if7dNi6VYTRpfC9gAXw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_URL}}/surveys",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"surveys"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET allSurveys",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/surveys",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"surveys"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "141"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8d-JuGRTIV/4dnozkr+6YxuEMlXacI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Jun 2021 14:50:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"identificationNumber\": \"Asd\",\n        \"surveyId\": 2,\n        \"userId\": 2,\n        \"name\": \"Aloha\"\n    },\n    {\n        \"identificationNumber\": \"Asd\",\n        \"surveyId\": 1,\n        \"userId\": 2,\n        \"name\": \"Aloha\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "GET single Survey",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/surveys/2",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"surveys",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET single Survey - by existnig ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/surveys/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"surveys",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "68"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"44-2Ory6Mh7KfXo9cgnh55FqtBEVq8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Jun 2021 15:13:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"identificationNumber\": \"Asd\",\n    \"surveyId\": 1,\n    \"userId\": 2,\n    \"name\": \"prva\"\n}"
+						},
+						{
+							"name": "GET single Survey - by invalid id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/surveys/-4",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"surveys",
+										"-4"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "11"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b-EFiDB1U+dmqzx9Mo2UjcZ1SJPO8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Jun 2021 15:14:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Bad Request"
+						},
+						{
+							"name": "GET single Survey - by non existing id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/surveys/4",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"surveys",
+										"4"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 19 Jun 2021 15:15:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				},
+				{
+					"name": "POST a new survey",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"identificationNumber\": \"aaaaaaaa13\",\r\n\"name\": \"djole\",\r\n\"userId\": 2,\r\n\"created_at\": \"2021-06-19 19:22:22\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/surveys",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"surveys"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST a new survey - with a valid data structure",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"identificationNumber\": \"aaaaaaaa131212\",\r\n\"name\": \"djole\",\r\n\"userId\": 2\r\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/surveys",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"surveys"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "80"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"50-DNU1rQ1PyOIeLO0FSAHI2jtBdhI\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 31 Aug 2021 21:28:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"surveyId\": 9,\n    \"name\": \"djole\",\n    \"identificationNumber\": \"aaaaaaaa131212\",\n    \"userId\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete a survey",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/surveys/3",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"surveys",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete a survey with non existing ID",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/surveys/2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"surveys",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "67"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"43-9JN3HIHK2YrBGKQY5FbXoVHr7EM\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 07 Sep 2021 09:11:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": -1,\n    \"errorMessage\": \"This record could not be deleted.\"\n}"
+						},
+						{
+							"name": "Delete a survey - successfully delete a survey with an existing ID",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/surveys/2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"surveys",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"34-3Woi6Y4X+M3qVvsIQ1xzM++GrlM\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 07 Sep 2021 09:12:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 0,\n    \"errorMessage\": \"One record deleted.\"\n}"
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Question",
+			"item": [
+				{
+					"name": "GET a single Question",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/question/2",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"question",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get a singe question by existing id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/question/2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"question",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "112"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"70-H5+Hjj4KKDV9je8NGDZkOjE5d90\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 07 Sep 2021 15:48:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"survey\": null,\n    \"questionId\": 2,\n    \"text\": \"eeee\",\n    \"type\": \"checkbox\",\n    \"arguments\": \"nista,tu,evo\",\n    \"surveyId\": 1,\n    \"order\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "GET all question an survey",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/survey/1/question",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"survey",
+								"1",
+								"question"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Create new question",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"text\": \"ovo je napravljeno preko posta\", \r\n\"type\":\"tip\", \r\n\"arguments\": \"argumenti\",\r\n\"surveyId\":1,\r\n\"orderOfQuestion\":7}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/question",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"question"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create new question with valid parameters",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"text\": \"ovo je napravljeno preko posta\", \r\n\"type\":\"tip\", \r\n\"arguments\": \"argumenti\",\r\n\"surveyId\":1,\r\n\"orderOfQuestion\":7}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/question",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"question"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "140"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8c-PNRjRT3rzVqtMkBe8C3cbH3l/sg\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 07 Sep 2021 16:41:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"survey\": null,\n    \"questionId\": 4,\n    \"text\": \"ovo je napravljeno preko posta\",\n    \"type\": \"tip\",\n    \"arguments\": \"argumenti\",\n    \"surveyId\": 1,\n    \"orderOfQuestion\": 7\n}"
+						}
+					]
+				},
+				{
+					"name": "PUT to edit a question",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "EDIT a question",
+							"host": [
+								"EDIT a question"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Answer",
+			"item": [
+				{
+					"name": "GET a single Answer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": [
+						{
+							"name": "GET a single Answer - non existing",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/answer/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"answer",
+										"1"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Sep 2021 17:17:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						},
+						{
+							"name": "GET a single Answer",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/answer/7",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"answer",
+										"7"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "61"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3d-yDAnsslBWuueb+XDjYBrdilZhvA\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Sep 2021 17:18:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"question\": null,\n    \"answerId\": 7,\n    \"questionId\": null,\n    \"value\": \"10\"\n}"
+						}
+					]
+				},
+				{
+					"name": "GET all answer of a question",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "POST create a new Answer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"value\":\"ti\",\r\n    \"questionId\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/answer",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"answer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "GET all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": [
+						{
+							"name": "GET all users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/user",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "366"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"16e-Ll0Dd8I9AW1uuae5r5bSxoL+5lE\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Sep 2021 17:15:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"userId\": 1,\n        \"username\": \"djole\",\n        \"passwordHash\": \"$2b$11$UKK/TTXyC0abSj1Sxxy3YuzbGR9QzbLqnPiLNhOKxXzPW5PV0qOka\"\n    },\n    {\n        \"userId\": 4,\n        \"username\": \"djsuboticdev@gmail.com\",\n        \"passwordHash\": \"$2b$11$2QCziDIqVLrmPv1MGkyxzOmJD.XYnn25NU9.FUegmwS2AqPu5Y93m\"\n    },\n    {\n        \"userId\": 6,\n        \"username\": \"djsuboticdevv@gmail.com\",\n        \"passwordHash\": \"$2b$11$.HiSKCuEMBEpQYtvzHaSMu6LH/2U0wM2kcH7wlp5rPXHmcw2XMlq.\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "GET a single user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": [
+						{
+							"name": "GET a single user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{API_URL}}/user/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "109"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6d-c8vVynD/qZF6zTp2QW7t7cpPyFw\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Sep 2021 17:16:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"userId\": 1,\n    \"username\": \"djole\",\n    \"passwordHash\": \"$2b$11$UKK/TTXyC0abSj1Sxxy3YuzbGR9QzbLqnPiLNhOKxXzPW5PV0qOka\"\n}"
+						},
+						{
+							"name": "GET non existing user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{API_URL}}/user/7",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user",
+										"7"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Sep 2021 17:16:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				},
+				{
+					"name": "POST a new user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"djiki111\",\r\n    \"password\":\"djole123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/user",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST user with same username",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"djsuboticdev@gmail.com\",\r\n    \"password\":\"djole123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/user",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "108"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6c-jdQXXcyDLDBkxKOv/RVRJ7INga0\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Sep 2021 17:14:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 1062,\n    \"errorMessage\": \"Duplicate entry 'djsuboticdev@gmail.com' for key 'user.uq_user_username'\"\n}"
+						},
+						{
+							"name": "POST a new user",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"djsuboticdevv@gmail.com\",\r\n    \"password\":\"djole123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/user",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "127"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7f-Mkvd101hbYJuqTI2u8HuCUAfP9Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Sep 2021 17:14:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"userId\": 6,\n    \"username\": \"djsuboticdevv@gmail.com\",\n    \"passwordHash\": \"$2b$11$.HiSKCuEMBEpQYtvzHaSMu6LH/2U0wM2kcH7wlp5rPXHmcw2XMlq.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "PUT a new password for the user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\":\"novipassword\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/user/3",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"user",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Set a new password for user",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\":\"novipassword\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/user/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "109"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6d-c8vVynD/qZF6zTp2QW7t7cpPyFw\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Sep 2021 17:13:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"userId\": 1,\n    \"username\": \"djole\",\n    \"passwordHash\": \"$2b$11$UKK/TTXyC0abSj1Sxxy3YuzbGR9QzbLqnPiLNhOKxXzPW5PV0qOka\"\n}"
+						}
+					]
+				},
+				{
+					"name": "DELETE a user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/user/1",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete one user from table",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/user/2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-+/zHhg+84sQie8xvQmB03Ijwjc4\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Sep 2021 17:12:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 0,\n    \"errorMessage\": \"Deleted 1 records.\"\n}"
+						},
+						{
+							"name": "Delete non-existing user",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/user/7",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user",
+										"7"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-fdUR+kEYPKq0iXOrFKT1mW2QMoM\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Sep 2021 17:13:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 0,\n    \"errorMessage\": \"Deleted 0 records.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "POST a new user registranion req",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/auth/user/register",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"auth",
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "POST a new login request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"djsuboticdev@gmail.com\",\r\n    \"password\":\"djole1233\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/auth/user/login",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"auth",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "When user not exist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"djsuboticdev@gmail.om\",\r\n    \"password\":\"djole123\"\r\n}"
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/user/login",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 12 Sep 2021 16:19:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						},
+						{
+							"name": "Invalid password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"djsuboticdev@gmail.com\",\r\n    \"password\":\"djole1233\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/user/login",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "22"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"16-fEc1WArHk5yVgGP5ekfvNKEEvfU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 12 Sep 2021 16:20:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Invalid user password."
+						},
+						{
+							"name": "POST a new login request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"djsuboticdev@gmail.com\",\r\n    \"password\":\"djole123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/user/login",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1088"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"440-GQ55Pv9oaC0MRLSzN/eJA7NuHuk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 12 Sep 2021 16:41:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"authToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWRlbnRpdHkiOiJkanN1Ym90aWNkZXZAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2MzE0NjQ5MDcsImV4cCI6MTYzMTQ2NTAyNywiaXNzIjoibG9jYWxob3N0In0.x5jxkhV1gxz1qXiNTryiTtlzVc1BVry0xE3VwDzjlDe_GzV0_cPugzzfCS0pWED3H5Ad1Oi5D0WwQl7lC-j87NqH9anAsBzxQVI5dy6Xm_NqKkuURh-cLMA6OZSPsjLkjD3bLtTJotBHL36F7N_abu8PVuLqd0qUs3ctZUbd8vZpq_N31Aocs-tb4lO-4hY0vnVoPyLl6SxV00lQjpHQooGYVwPusKgADt0M08lyj0Q_OuVs9Ia-K39erzShUmMXUIvl87ofMaUPXkjUQQmdG_1yaCzNungy7jZgyJOd_EqNKOZKxoJCFhF_D226PLxuMdfng7Lx7CrG6OkbiWogVg\",\n    \"refreshToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWRlbnRpdHkiOiJkanN1Ym90aWNkZXZAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2MzE0NjQ5MDcsImV4cCI6MTY2MzAwMDkwNywiaXNzIjoibG9jYWxob3N0In0.kqYOvQQxPgMt1IswRe23nVn10bHuYbXdLBaaArE4g8FL726zuSwInB3d6JM3T-1BrHTypNNM5zEptNH951uFeRVZjATUXxefntE4CMFJl5_LM9Ggz7YDM7AzQ41PAZjItBarUwD9iTH3qo-ffW1CB_-0rk85KCQwXicVJAbiXAcZLjcrLN8qh97IK6LkJGFLErduLNGhZndxPZsEmOOBgULJPvZ8OIsnKV43WRxQbQysRVZCK-LpE7H3m034mJlfRBApm8ohHp_x8HfJAIWtRh7hYz9DyLh-iM_82JPGf04Z6yFCkPLd_To7YwuqMvpn22d1h_V70YnF7QhAD_THkQ\"\n}"
+						},
+						{
+							"name": "Successful login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"djsuboticdev@gmail.com\",\r\n    \"password\":\"djole123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/user/login",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1088"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"440-0+v6iAOuUY2XXbeuATnXaw2PN80\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Sep 2021 17:11:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"authToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWRlbnRpdHkiOiJkanN1Ym90aWNkZXZAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2MzE2Mzk0NjIsImV4cCI6MTYzMTYzOTU4MiwiaXNzIjoibG9jYWxob3N0In0.LKeD9NqASN-s75xk2rLxHkdlX1gVkcy0_STHs5GzDDrOHKcI3MQPXeRNgKsB6oGED5Bkn2cCxCjgCUuMm9wz35rEsc5e46-BUnsF7-UMWKg82oApag-_XvVZeahfo6u4JXQeMZoo8ffGkIxoolbJlVIMh_yQX_k04ata_dlxXZ7TsJBnluDlDg4HA2ijjJS-ggbyvvFwPh4mHIl0DgLbY_QaFbUXaC12CIFCcwDHHEdFy-_U8XXwnl2yap2wtMqs_XFAssYQBxDpr9Vn7E_XSKXUY0wFb2xjp1wBJeREx5sQwC_3qO2CBPPBm2GUyzBXlPHRdV0ZpXhcDaRJM6e8iA\",\n    \"refreshToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWRlbnRpdHkiOiJkanN1Ym90aWNkZXZAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2MzE2Mzk0NjIsImV4cCI6MTY2MzE3NTQ2MiwiaXNzIjoibG9jYWxob3N0In0.jT6m3MuYltBnaZbB04_3Twa_xXQH8FuKa7BzinCte97qG6XovWKOdw0TqRhwVBArdotH6Q-lH6M95O2LXedZk3NEIDBFHWRL3_54R-4nWuAorgxPIkOcjcu1OLhVNrR5qfRhCeoeYFBP1jnSNmyq5M9bFBxlu_tttgMSpVQWrYs3K8mAEcZ2Pk1L6NGqW_iivH0-Az__8wAVraUzqoIL93tm6Nwqwdd-krXGGJP4rlSqtKxgdhk5QrDcIbbIdK48m_LPPI2XbM1Y3M1F-zrfjWR9Vf6oVdY-ECN0nDUHjutjpaX08sHzlukMORcoA93M-TjW6k-eTjRUkZOiHBQRCg\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "API_URL",
+			"value": "http://localhost:4080"
+		},
+		{
+			"key": "API_USER_AUTH_TOKEN\n",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWRlbnRpdHkiOiJkanN1Ym90aWNkZXZAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2MzE0NzQ3NzcsImV4cCI6MTYzMTQ3NDg5NywiaXNzIjoibG9jYWxob3N0In0.yLx2YyHveNu7YRlW-nsgB03Y-6luTfnRgBTTueK5ZIdMHKXq-Yatuw_C34cL_WHMO_JjfkTTXbZjL6VG-0kAlQ9IiCPQZFdFk4H9R7dDLZ2mQB8hWU8vZlbsDS5LrfoiBUA4b9y8LTwEpUncJXIB74bajFQGzlxZH6htp8G2_Yii87ABwxEEEtQOLB5LpTskH58TD9T3Mk2TglVJZ5b4CGGJYUVmTWaockyIw1EpCdpjVtfkGUsYd2k9eG4RY5JPXs1Qq23CYxuz-JrZzVB-EoDsBVz5Fbsd0GW4wEKiZCFjaietbJDTiYe6EYV-sUg-GumbmFx1a3iQy_o8gVOSzg"
+		}
+	]
+}
